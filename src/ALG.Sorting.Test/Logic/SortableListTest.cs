@@ -26,7 +26,9 @@ namespace ALG.Sorting.Test.Logic
             shuffledList.MergeSort();
 
             // Assert
-            shuffledList.Should().BeEquivalentTo(sequence, because: "the list should be sorted and the original list was sorted");
+            // Because the SortedList class does not implement ICollection or IEnumerable, comparison must be done by hand.
+            for (var i = 0; i < sequence.Count; i++)
+                shuffledList[i].Should().Be(sequence[i], because: "the list should be sorted and the original list was sorted");
         }
     }
 }
